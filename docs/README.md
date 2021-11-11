@@ -1,2 +1,2 @@
 
-[ART-Pi开发手册](development/ART-Pi_开发手册.md ':include')
+[ART-Pi Smart 用户手册](user_manual/user_manual.md)
