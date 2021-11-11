@@ -526,7 +526,7 @@
     
     .productVMlddle {
         top: 50%;
-        transform: translate(0, 130px);
+        transform: translate(0, 0px);
     }
     
     @media (min-width:0) and (max-width: 992px) {
