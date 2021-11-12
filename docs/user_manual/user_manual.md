@@ -1148,26 +1148,33 @@ rt-smart gdb 调试的基本原理：通过 Kernel 来调试用户 APP。即通�
 
 在开发环境上，rt-smart 可以使用轻量级的 VSCode 编辑器进行开发，例如编辑代码、远程登陆到 Linux 服务器上进行开发、使用 VSCode 来进行调试等。
 
-## Shell 调试工具
+## FinSH 控制台：Shell 调试工具
 
-方便实时查看内核运行状态，如任务信息、堆栈信息、定时器信息、内存信息等。
-
-## Menuconfig 工具
-
-用来对内核和组件的功能进行配置，对组件进行裁剪。
+[FinSH](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/finsh/finsh) 是 RT-Thread 的命令行组件，提供一套供用户在命令行调用的操作接口，方便实时查看内核运行状态，如任务信息、堆栈信息、定时器信息、内存信息等。它可以使用串口 / 以太网 / USB 等与 PC 机进行通信。
 
 ## ulog 日志系统
 
-便于软件调试、问题追溯、性能分析、系统监控、故障预警等。
+[ulog](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/ulog/ulog) 是一个非常简洁、易用的 C/C++ 日志组件，可以将软件运行的状态、过程等信息，输出到不同的介质中（例如：文件、控制台、显示屏等），并进行显示和保存。为软件调试、维护过程中的问题追溯、性能分析、系统监控、故障预警等功能，提供参考依据。
+
+## menuconfig 工具
+
+RT-Thread 借助 [Kconfig](https://www.rt-thread.org/document/site/#/development-tools/kconfig/kconfig) 文件生成的配置文件 rtconfig.h 来配置系统，Kconfig 文件是各种配置界面的源文件。当在 bsp 目录下使用 env 工具执行 menuconfig 命令时会出现 RT-Thread 系统的配置界面，所有配置工具都是通过读取当前 bsp 目录下的 Kconfig 文件来生成配置界面的，这个文件就是所有配置的总入口，它会包含其他目录的 Kconfig 文件。配置工具读取各个 Kconfig 文件，生成配置界面供开发人员配置系统，最终生成 RT-Thread 系统的配置文件 rtconfig.h。
+
+同样，rt-smart 也可以使用 menuconfig  工具来对内核和组件的功能进行配置，对组件进行裁剪。
 
 
 
-# 注意事项
+# 常见问题解答
 
-## 技术支持：
+## 问题 01：用 TFTP 方式下载内核固件到开发板时，无法正常下载并显示一直处理下载中
 
-可以到 RT-Thread 嵌入式开源社区，提交 rt-smart 相关的问题：https://club.rt-thread.org/index.html
+- 问题描述：TFTP 无法下载固件，并且显示如下 Log
 
+  ![TFTP 下载固件失败](figures/问题01_TFTP_下载固件失败.png)
+
+- 解决方案：先暂时关闭一下测试电脑的防火墙，等成功下载固件到开发板之后，再重新启用防火墙
+
+  ![关闭测试电脑的防火墙](figures/问题01_关闭测试电脑的防火墙.png)
 
 
 # 扩展资料
@@ -1192,4 +1199,8 @@ rt-smart gdb 调试的基本原理：通过 Kernel 来调试用户 APP。即通�
 | 100ask_imx6ull烧写工具下载地址                | https://github.com/100askTeam/gui_for_nxp_uuu/tree/master/100ask_imx6ull%E7%83%A7%E5%86%99%E5%B7%A5%E5%85%B7 |      |
 | 100ask_imx6ull烧写工具 git  仓库              | https://github.com/100askTeam/gui_for_nxp_uuu                |      |
 | 100ask_imx6ull烧写工具设计与使用说明          | http://wiki.100ask.org/100ask_imx6ull_tool                   |      |
+
+## 技术支持：
+
+可以到 RT-Thread 嵌入式开源社区，提交 rt-smart 相关的问题：https://club.rt-thread.org/index.html
 
